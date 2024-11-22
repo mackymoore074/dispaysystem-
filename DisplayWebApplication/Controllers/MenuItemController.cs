@@ -1,4 +1,3 @@
-using ClassLibraryModels;
 using ClassLibraryModels.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,20 +19,7 @@ namespace DisplayAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItems()
         {
-            return await _context.MenuItems
-                .Include(m => m.Screen)
-                .OrderBy(m => m.Order)
-                .ToListAsync();
-        }
-
-        // GET: api/MenuItem/Screen/5
-        [HttpGet("Screen/{screenId}")]
-        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItemsByScreen(int screenId)
-        {
-            return await _context.MenuItems
-                .Where(m => m.ScreenId == screenId)
-                .OrderBy(m => m.Order)
-                .ToListAsync();
+            return await _context.MenuItems.ToListAsync();
         }
 
         // GET: api/MenuItem/5
@@ -41,7 +27,6 @@ namespace DisplayAPI.Controllers
         public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
         {
             var menuItem = await _context.MenuItems
-                .Include(m => m.Screen)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (menuItem == null)
@@ -101,24 +86,6 @@ namespace DisplayAPI.Controllers
             return NoContent();
         }
 
-        // PUT: api/MenuItem/UpdateOrder
-        [HttpPut("UpdateOrder")]
-        public async Task<IActionResult> UpdateMenuItemsOrder(List<MenuItemOrder> menuItemOrders)
-        {
-            foreach (var order in menuItemOrders)
-            {
-                var menuItem = await _context.MenuItems.FindAsync(order.Id);
-                if (menuItem != null)
-                {
-                    menuItem.Order = order.NewOrder;
-                    menuItem.LastUpdated = DateTime.UtcNow;
-                }
-            }
-
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
         // DELETE: api/MenuItem/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMenuItem(int id)
@@ -139,11 +106,5 @@ namespace DisplayAPI.Controllers
         {
             return _context.MenuItems.Any(e => e.Id == id);
         }
-    }
-
-    public class MenuItemOrder
-    {
-        public int Id { get; set; }
-        public int NewOrder { get; set; }
     }
 } 
