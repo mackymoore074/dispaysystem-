@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using ClassLibraryModels;  // Make sure this namespace matches where your DbContext is defined
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add this BEFORE other service configurations
+builder.Services.AddDbContext<InformationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 

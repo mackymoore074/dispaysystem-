@@ -23,19 +23,32 @@ namespace DisplayAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Admin>>> GetAdmins()
         {
-            var admins = await _context.Admins
-                .Include(a => a.Agency)
-                .Include(a => a.Department)
-                .Include(a => a.Location)
-                .Include(a => a.Screen)
-                .ToListAsync();
-
-            if (admins == null || !admins.Any())
+            try
             {
-                return NotFound();
-            }
+                var admins = await _context.Admins
+                    .Include(a => a.Agency)
+                    .Include(a => a.Department)
+                    .Include(a => a.Location)
+                    .Include(a => a.Screen)
+                    .ToListAsync();
 
-            return Ok(admins);
+                if (admins == null || !admins.Any())
+                {
+                    return NotFound();
+                }
+
+                return Ok(admins);
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Log the error
+                return StatusCode(500, "Database connection error");
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                return StatusCode(500, "An error occurred");
+            }
         }
 
         // GET: api/Admin/5
