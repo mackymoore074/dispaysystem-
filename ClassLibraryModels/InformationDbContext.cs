@@ -12,6 +12,7 @@ public class InformationDbContext : DbContext
     public DbSet<Department> Departments { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Screen> Screens { get; set; }
+    public DbSet<AllowedIpAddress> AllowedIpAddresses { get; set; }
 
     // Any additional configurations, such as relationships, if necessary
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,5 +39,10 @@ public class InformationDbContext : DbContext
             .HasOne(a => a.Screen)
             .WithMany()
             .HasForeignKey(a => a.ScreenId);
+
+        modelBuilder.Entity<AllowedIpAddress>()
+            .HasOne(ip => ip.Location)
+            .WithMany(l => l.AllowedIpAddresses)
+            .HasForeignKey(ip => ip.LocationId);
     }
 }

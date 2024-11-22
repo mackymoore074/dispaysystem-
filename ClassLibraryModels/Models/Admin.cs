@@ -6,6 +6,7 @@ namespace ClassLibraryModels.Models
 {
     public class Admin
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -24,16 +25,16 @@ namespace ClassLibraryModels.Models
         public Role Role { get; set; } // e.g., "SuperAdmin", "Admin"
 
         // Foreign key properties for related entities
-        public int AgencyId { get; set; }
+        public int? AgencyId { get; set; }
         public Agency Agency { get; set; } // Navigation property for Agency
 
-        public int DepartmentId { get; set; }
+        public int? DepartmentId { get; set; }
         public Department Department { get; set; } // Navigation property for Department
 
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
         public Location Location { get; set; } // Navigation property for Location
 
-        public int ScreenId { get; set; }
+        public int? ScreenId { get; set; }
         public Screen Screen { get; set; } // Navigation property for Screen
 
         public DateTime DateCreated { get; set; } // Date the admin was created

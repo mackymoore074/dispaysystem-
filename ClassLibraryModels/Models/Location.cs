@@ -25,12 +25,12 @@ namespace ClassLibraryModels.Models
 
         public List<Screen> Screens { get; set; } = new List<Screen>(); // Screens in this location
         public List<Department> Departments { get; set; } = new List<Department>(); // Departments in this location
-        public List<string> AllowedIpAddresses { get; set; } // Public IPs allowed to retrieve news
+        public List<AllowedIpAddress> AllowedIpAddresses { get; set; } = new List<AllowedIpAddress>();
 
         // Constructor
         public Location()
         {
-            AllowedIpAddresses = new List<string>();
+            AllowedIpAddresses = new List<AllowedIpAddress>();
         }
     }
 }
