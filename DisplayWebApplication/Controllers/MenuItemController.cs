@@ -17,14 +17,14 @@ namespace DisplayAPI.Controllers
 
         // GET: api/MenuItem
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItems()
+        public async Task<ActionResult<IEnumerable<MenuItems>>> GetMenuItems()
         {
             return await _context.MenuItems.ToListAsync();
         }
 
         // GET: api/MenuItem/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
+        public async Task<ActionResult<MenuItems>> GetMenuItem(int id)
         {
             var menuItem = await _context.MenuItems
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -39,7 +39,7 @@ namespace DisplayAPI.Controllers
 
         // POST: api/MenuItem
         [HttpPost]
-        public async Task<ActionResult<MenuItem>> CreateMenuItem(MenuItem menuItem)
+        public async Task<ActionResult<MenuItems>> CreateMenuItem(MenuItems menuItem)
         {
             if (!ModelState.IsValid)
             {
@@ -58,7 +58,7 @@ namespace DisplayAPI.Controllers
 
         // PUT: api/MenuItem/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateMenuItem(int id, MenuItem menuItem)
+        public async Task<IActionResult> UpdateMenuItem(int id, MenuItems menuItem)
         {
             if (id != menuItem.Id)
             {

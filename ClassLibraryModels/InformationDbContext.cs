@@ -13,6 +13,8 @@ public class InformationDbContext : DbContext
     public DbSet<Location> Locations { get; set; }
     public DbSet<Screen> Screens { get; set; }
     public DbSet<AllowedIpAddress> AllowedIpAddresses { get; set; }
+    public DbSet<MenuItems> MenuItems { get; set; }
+    public DbSet<NewsItem> NewsItems { get; set; }
 
     // Any additional configurations, such as relationships, if necessary
     protected override void OnModelCreating(ModelBuilder modelBuilder)

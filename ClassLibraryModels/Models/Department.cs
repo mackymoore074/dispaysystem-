@@ -21,6 +21,8 @@ namespace ClassLibraryModels.Models
         public DateTime DateCreated { get; set; }
         public List<Admin> Admins { get; set; } = new List<Admin>(); // Admins linked to this department
         public List<Screen> Screens { get; set; } = new List<Screen>(); // Screens in the department
+        public Agency Agency { get; set; }
+        public Location Location { get; set; }
     }
 
 }

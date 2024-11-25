@@ -5,7 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add this BEFORE other service configurations
 builder.Services.AddDbContext<InformationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("DisplayWebApplication")
+    ));
 
 // Add services to the container.
 

@@ -43,8 +43,8 @@ namespace DisplayAPI.Controllers
             var now = DateTime.UtcNow;
             return await _context.NewsItems
                 .Where(n => n.IsActive && 
-                           (!n.StartDate.HasValue || n.StartDate <= now) &&
-                           (!n.EndDate.HasValue || n.EndDate >= now))
+                           (n.StartDate == null || n.StartDate <= now) &&
+                           (n.EndDate == null || n.EndDate >= now))
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }

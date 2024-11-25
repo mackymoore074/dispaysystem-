@@ -9,6 +9,11 @@ namespace ClassLibraryModels.Models
 {
     public class Employee
     {
+        public Employee()
+        {
+            Departments = new List<Department>();
+        }
+
         public int Id { get; set; }
         [Required]
         [StringLength(100)]
@@ -20,6 +25,6 @@ namespace ClassLibraryModels.Models
         [EmailAddress]
         public string Email { get; set; } // Employee's email address
         public DateTime DateCreated { get; set; }
-        public List<Department> Departments { get; set; } // Departments the employee is associated with
+        public ICollection<Department> Departments { get; set; } // Departments the employee is associated with
     }
 }

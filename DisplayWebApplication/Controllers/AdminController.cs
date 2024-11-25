@@ -39,12 +39,12 @@ namespace DisplayAPI.Controllers
 
                 return Ok(admins);
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 // Log the error
                 return StatusCode(500, "Database connection error");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Log the error
                 return StatusCode(500, "An error occurred");
