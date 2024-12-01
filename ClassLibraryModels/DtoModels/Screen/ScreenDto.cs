@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystemModels.DtoModels.Screen
+namespace ClassLibraryModels.DtoModels.Screen
 {
     public class ScreenDto
     {
@@ -12,9 +12,9 @@ namespace SystemModels.DtoModels.Screen
         public string Name { get; set; }
         public int DepartmentId { get; set; }
         public int LocationId { get; set; }
-        public bool IsOnline { get; set; } 
+        public bool IsOnline { get; set; }
         public string StatusMessage { get; set; }
-        public string ScreenType { get; set; } 
+        public string ScreenType { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime LastUpdated { get; set; }
     }

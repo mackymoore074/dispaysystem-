@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystemModels.DtoModels.Agency
+namespace ClassLibraryModels.DtoModels.Agency
 {
     public class AgencyDto
     {

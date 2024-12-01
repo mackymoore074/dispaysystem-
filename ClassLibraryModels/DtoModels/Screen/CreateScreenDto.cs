@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystemModels.DtoModels.Screen
+namespace ClassLibraryModels.DtoModels.Screen
 {
     public class CreateScreenDto
     {

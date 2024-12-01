@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using SystemModels.Models;
-using SystemModels.DtoModels.Admin;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using SystemModels;
+using ClassLibraryModels.DtoModels.Admin;
+using ClassLibraryModels.Models;
 
 namespace TheWebApplication.Controllers
 {
@@ -16,11 +15,11 @@ namespace TheWebApplication.Controllers
     [Route("api/[controller]")]
     public class AdminController : ControllerBase
     {
-        private readonly InfoDbContext _context;
+        private readonly InformationDbContext _context;
         private readonly ILogger<AdminController> _logger;
         private readonly IPasswordHasher<Admin> _passwordHasher;
 
-        public AdminController(InfoDbContext context, ILogger<AdminController> logger, IPasswordHasher<Admin> passwordHasher)
+        public AdminController(InformationDbContext context, ILogger<AdminController> logger, IPasswordHasher<Admin> passwordHasher)
         {
             _context = context;
             _logger = logger;
