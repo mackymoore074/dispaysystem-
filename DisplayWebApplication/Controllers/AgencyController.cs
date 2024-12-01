@@ -3,7 +3,7 @@ using ClassLibraryModels.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DisplayAPI.Controllers
+namespace DisplayWebApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -104,4 +104,4 @@ namespace DisplayAPI.Controllers
             return _context.Agencies.Any(e => e.Id == id);
         }
     }
-} 
+}

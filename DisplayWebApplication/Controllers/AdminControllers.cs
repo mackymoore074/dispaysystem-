@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using ClassLibraryModels.DtoModels.Admin;
 using ClassLibraryModels.Models;
+using ClassLibraryModels;
 
-namespace TheWebApplication.Controllers
+namespace DisplayWebApplication.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

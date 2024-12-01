@@ -3,7 +3,7 @@ using ClassLibraryModels.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DisplayAPI.Controllers
+namespace DisplayWebApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,6 @@ namespace DisplayAPI.Controllers
         public async Task<ActionResult<IEnumerable<NewsItem>>> GetNewsItems()
         {
             return await _context.NewsItems
-                .Include(n => n.Screen)
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
@@ -31,7 +30,7 @@ namespace DisplayAPI.Controllers
         public async Task<ActionResult<IEnumerable<NewsItem>>> GetNewsItemsByScreen(int screenId)
         {
             return await _context.NewsItems
-                .Where(n => n.ScreenId == screenId)
+                .Where(n => n.NewsItemScreens.Any(ns => ns.ScreenId == screenId))
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
@@ -42,9 +41,9 @@ namespace DisplayAPI.Controllers
         {
             var now = DateTime.UtcNow;
             return await _context.NewsItems
-                .Where(n => n.IsActive && 
-                           (n.StartDate == null || n.StartDate <= now) &&
-                           (n.EndDate == null || n.EndDate >= now))
+                .Where(n => n.IsActive &&
+                           (n.DateCreated == null || n.DateCreated <= now) &&
+                           (n.TimeOutDate == null || n.TimeOutDate >= now))
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
@@ -54,7 +53,8 @@ namespace DisplayAPI.Controllers
         public async Task<ActionResult<NewsItem>> GetNewsItem(int id)
         {
             var newsItem = await _context.NewsItems
-                .Include(n => n.Screen)
+                .Include(n => n.NewsItemScreens)
+                .ThenInclude(ns => ns.Screen)
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             if (newsItem == null)
@@ -151,4 +151,4 @@ namespace DisplayAPI.Controllers
             return _context.NewsItems.Any(e => e.Id == id);
         }
     }
-} 
+}

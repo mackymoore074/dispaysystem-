@@ -1,5 +1,5 @@
-using ClassLibraryModels;
 using ClassLibraryModels.Models;
+using ClassLibraryModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -109,4 +109,4 @@ namespace DisplayAPI.Controllers
             return _context.Locations.Any(e => e.Id == id);
         }
     }
-} 
+}

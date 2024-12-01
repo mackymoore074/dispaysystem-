@@ -1,11 +1,10 @@
 ﻿using ClassLibraryModels.Models;
-using ClassLibraryModels;
 using Microsoft.EntityFrameworkCore;
 using Org.BouncyCastle.Crypto.Generators;
 using System;
 using static ClassLibraryModels.Models.NewsItem;
 
-namespace SystemModels
+namespace ClassLibraryModels
 {
     public class InformationDbContext : DbContext
     {
@@ -95,10 +94,10 @@ namespace SystemModels
                 .WithMany(n => n.NewsItemAgencies)  // Navigation property on NewsItem
                 .HasForeignKey(na => na.NewsItemId);
 
-            modelBuilder.Entity<NewsItemAgency>()
-                .HasOne(na => na.Agency)
-                .WithMany(a => a.NewsItemAgencies)  // Navigation property on Agency
-                .HasForeignKey(na => na.AgencyId);
+           // modelBuilder.Entity<NewsItemAgency>()
+           //     .HasOne(na => na.Agency)
+            //    .WithMany(a => a.NewsItemAgencies)  // Navigation property on Agency
+              //  .HasForeignKey(na => na.AgencyId);
 
             // Adding constraints and indexes
             modelBuilder.Entity<Admin>()
@@ -168,7 +167,7 @@ namespace SystemModels
                     Id = 1,
                     FirstName = "John",
                     LastName = "Doe",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("ade123"),
+                   // PasswordHash = BCrypt.Net.BCrypt.HashPassword("ade123"),//
                     Email = "johndoe@agency.com",
                     DateCreated = DateTime.UtcNow,
                     LastLogin = DateTime.UtcNow,
@@ -179,7 +178,7 @@ namespace SystemModels
                     Id = 2,
                     FirstName = "Jane",
                     LastName = "Smith",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("ade123"),
+                 //   PasswordHash = BCrypt.Net.BCrypt.HashPassword("ade123"),//
                     Email = "janesmith@agency.com",
                     DateCreated = DateTime.UtcNow,
                     LastLogin = DateTime.UtcNow,

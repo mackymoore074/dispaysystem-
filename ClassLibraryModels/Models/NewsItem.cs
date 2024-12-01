@@ -28,6 +28,7 @@ namespace ClassLibraryModels.Models
         public ICollection<NewsItemScreen> NewsItemScreens { get; set; }
         public ICollection<NewsItemDepartment> NewsItemDepartments { get; set; }
         public ICollection<NewsItemLocation> NewsItemLocations { get; set; }
+        public bool IsActive { get; set; }
 
         public NewsItem()
         {
